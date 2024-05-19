@@ -463,15 +463,13 @@ void drive_motors_forward_backward(){
   } else {
     servo_speed = 0;
   }
-  servo_1.write(servo_speed);
-  servo_2.write(servo_speed);
 
   if(arming_throttle_protection){
     if(servo_1_was_0_before_arming){
-      servo_1.write(map(rxData.pot_1,0,4950,0,180));      
+      servo_1.write(servo_speed);
     }
     if(servo_2_was_0_before_arming){
-      servo_2.write(map(rxData.pot_1,0,4950,0,180));
+      servo_2.write(servo_speed);
     }
   }
 }

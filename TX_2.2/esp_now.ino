@@ -286,10 +286,10 @@ void send_data(){
   if(false){
     txData.x_axis = 4095 -  calculate_expo_12_Bit(mapWithMidpoint(constrain(analogRead(g_x),EEPROM_DATA.calib_x_low ,EEPROM_DATA.calib_x_high), EEPROM_DATA.calib_x_low, ch1_offset, EEPROM_DATA.calib_x_high, 0, 4095),0.5);
   // }else if(get_switch_2()==2){
-  }else if(true){
+  }else if(false){
     txData.x_axis = 4095 -  calculate_expo_12_Bit(mapWithMidpoint(constrain(analogRead(g_x),EEPROM_DATA.calib_x_low ,EEPROM_DATA.calib_x_high), EEPROM_DATA.calib_x_low, ch1_offset, EEPROM_DATA.calib_x_high, 0, 4095),0.25);
   // }else if(get_switch_2()==3){
-  }else if(false){
+  }else if(true){
     txData.x_axis = 4095 - mapWithMidpoint(constrain(analogRead(g_x),EEPROM_DATA.calib_x_low ,EEPROM_DATA.calib_x_high), EEPROM_DATA.calib_x_low, ch1_offset, EEPROM_DATA.calib_x_high, 0, 4095);
   }
   txData.y_axis =mapWithMidpoint(constrain(analogRead(g_y),EEPROM_DATA.calib_y_low ,EEPROM_DATA.calib_y_high), EEPROM_DATA.calib_y_low, ch2_offset, EEPROM_DATA.calib_y_high, 0, 4095);

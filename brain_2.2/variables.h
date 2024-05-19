@@ -8,6 +8,9 @@ int motorA_output = 0;
 int motorB_output = 0;
 int motorC_output = 0;
 int motorD_output = 0;
+#define max_throttle_const 255                    // max throttle value
+#define middle_throttle_const 100
+int max_throttle = middle_throttle_const;
 
 // general variables end
 
@@ -331,5 +334,5 @@ Servo servo_1;
 Servo servo_2;
 bool servo_1_was_0_before_arming = false;
 bool servo_2_was_0_before_arming = false;
-
+int servo_speed;
 // servo variables end

@@ -148,6 +148,12 @@ void setup() {
   init_eeprom();
   init_gpio();
 
+  if (get_button_A()) {
+    EEPROM_DATA.need_to_calibrate = 1;
+    EEPROM.put(EEPROM_ADDRES, EEPROM_DATA);
+    EEPROM.commit();
+  }
+
   if (get_button_B()) {
     state = BINDING;
   } else {
@@ -163,6 +169,7 @@ void setup() {
   init_joystick();
 }
 
+#define DEBUG
 void loop() {
 
 
@@ -170,24 +177,25 @@ void loop() {
     last_led_update = millis();
     update_leds();
 
+#ifdef DEBUG
     // print all hardware pin values
-    
-    // Serial.print("g_x: ");
-    // Serial.print(analogRead(g_x));
-    // Serial.print("\tg_y: ");
-    // Serial.print(analogRead(g_y));
-    // Serial.print("\tpot: ");
-    // Serial.print(analogRead(pot));
-    // Serial.print("\tsw1: ");
-    // Serial.print(get_switch_1());
-    // Serial.print("\tsw2: ");
-    // Serial.print(get_switch_2());
-    // Serial.print("\tsw3: ");
-    // Serial.print(get_switch_3());
-    // Serial.print("\tBTN_A: ");
-    // Serial.print(get_button_A());
-    // Serial.print("\tBTN_B: ");
-    // Serial.println(get_button_B());
+    Serial.print("g_x: ");
+    Serial.print(analogRead(g_x));
+    Serial.print("\tg_y: ");
+    Serial.print(analogRead(g_y));
+    Serial.print("\tpot: ");
+    Serial.print(analogRead(pot));
+    Serial.print("\tsw1: ");
+    Serial.print(get_switch_1());
+    Serial.print("\tsw2: ");
+    Serial.print(get_switch_2());
+    Serial.print("\tsw3: ");
+    Serial.print(get_switch_3());
+    Serial.print("\tBTN_A: ");
+    Serial.print(get_button_A());
+    Serial.print("\tBTN_B: ");
+    Serial.println(get_button_B());
+#endif
   }
 
   switch (state) {

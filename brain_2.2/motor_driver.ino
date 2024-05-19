@@ -455,6 +455,17 @@ void drive_motors_forward_backward(){
   }else if(motorB_output < 0){
     drive_motor_B(FORWARD, map(constrain(motorB_output ,-2048 ,0 ) ,0 ,-2048 ,0 ,255 ));
   }
+
+  if (rxData.btn_A) {
+    if (map(rxData.pot_1,0,4950,0,180) > servo_speed) {
+      servo_speed++;
+    }
+  } else {
+    servo_speed = 0;
+  }
+  servo_1.write(servo_speed);
+  servo_2.write(servo_speed);
+
   if(arming_throttle_protection){
     if(servo_1_was_0_before_arming){
       servo_1.write(map(rxData.pot_1,0,4950,0,180));      
